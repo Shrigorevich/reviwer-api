@@ -1,3 +1,4 @@
+using Dapper;
 using Domain;
 using Microsoft.Extensions.Configuration;
 
@@ -11,10 +12,11 @@ public class MovieRepository : BaseRepository, IMovieRepository
     }
 
 
-    public Task<int> Create(MovieDraftDto movie)
+    public async Task<int> Create(MovieDraftDto movie)
     {
-        using var conn = Connection();
-        
+        await using var conn = Connection();
+        var id = await conn.QuerySingleAsync<int>("");
+        return id;
     }
 
     public Task<Movie> Get(Guid id)
