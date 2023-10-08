@@ -39,4 +39,6 @@ public class MovieController : BaseController
         var result = await _movieService.CreateMovie(movie);
         return CreateActionResult(result);
     }
+
+    
 }
